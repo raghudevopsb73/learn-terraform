@@ -7,13 +7,17 @@ resource "aws_instance" "web" {
     Name = var.name
   }
 
+}
+
+resource "null_resource" "ansible" {
+  depends_on = [aws_instance.web, aws_route53_record.www]
   provisioner "remote-exec" {
 
     connection {
       type     = "ssh"
       user     = "centos"
       password = "DevOps321"
-      host     = self.public_ip
+      host     = aws_instance.web.public_ip
     }
 
     inline = [
@@ -21,7 +25,6 @@ resource "aws_instance" "web" {
       "ansible-pull -i localhost, -U https://github.com/raghudevopsb73/roboshop-ansible main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
-
 }
 
 resource "aws_route53_record" "www" {
