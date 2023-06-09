@@ -48,5 +48,5 @@ variable "a" {
 }
 
 output "a" {
-  value = var.a > 100 ? "Surplus Qunatity" : "Less Quantity"
+  value = var.a > 100 ? "Surplus Quantity" : "Less Quantity"
 }
