@@ -48,5 +48,7 @@ variable "a" {
 }
 
 output "a" {
-  value = var.a > 50 ? "Surplus Quantity" : "Less Quantity"
+  value = var.a > 50  ? "Surplus Quantity" : "Less Quantity"
+
+  ] ` we12
 }
